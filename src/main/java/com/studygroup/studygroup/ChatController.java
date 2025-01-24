@@ -31,13 +31,15 @@ public class ChatController {
     private volatile boolean running = true; // Used to control the ReadThread loop
 
     private String[][] groupDetails = {
-            {"239.0.0.0", "1000"},
-            {"239.0.0.1", "1001"}
+            {"239.0.0.0", "1234"},
+            {"240.19.2.1", "1523"},
+            {"239.0.2.90", "1000"},
+            {"239.0.0.1", "1900"}
     };
 
     public void initialize() {
         // Initialize the default group
-        initChat("239.0.0.0", 1000);
+        initChat("239.0.0.0", 1234);
 
         // Add buttons for group switching
         for (String[] groupDetail : groupDetails) {

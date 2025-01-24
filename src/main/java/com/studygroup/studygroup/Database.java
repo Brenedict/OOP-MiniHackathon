@@ -12,27 +12,34 @@ public class Database {
 
     }
 
-    public static boolean checkCredentials(String username, String password) throws SQLException {
-        String sql = "SELECT Username, Password FROM StudyGroup WHERE Username = ? AND Password = ?;";
-        statement = con.prepareStatement(sql);
-        statement.setString(1, username);
-        statement.setString(2, password);
+    public boolean checkCredentials(String email, String password)  {
+        try {
+            String sql = "SELECT Email, Password FROM Credentials WHERE Email = ? AND Password = ?;";
+            statement = con.prepareStatement(sql);
+            statement.setString(1, email);
+            statement.setString(2, password);
 
-        resultSet = statement.executeQuery(sql);
-        String usernameResult = " ", passwordResult = " ";
-        while(resultSet.next()) {
-            usernameResult = resultSet.getString(1);
-            passwordResult = resultSet.getString(2);
+            resultSet = statement.executeQuery();
+            String usernameResult = " ", passwordResult = " ";
+            while (resultSet.next()) {
+                usernameResult = resultSet.getString(1);
+                passwordResult = resultSet.getString(2);
+            }
+
+            if (email.equals(usernameResult) && password.equals(passwordResult)) {
+                return true;
+            }
+
+            return false;
+        }
+        catch(SQLException e) {
+            System.out.println("Error");
+            return false;
         }
 
-        if(username.equals(usernameResult) && password.equals(passwordResult)) {
-            return true;
-        }
-
-        return false;
     }
 
-    public static void main(String[] args) throws SQLException {
-        Database db = new Database();
-    }
+//    public static void main(String[] args) throws SQLException {
+//        Database db = new Database();
+//    }
 }
