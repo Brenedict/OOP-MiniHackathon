@@ -1,8 +1,7 @@
 package com.studygroup.studygroup;
 
-import javafx.application.Application;
+
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -11,32 +10,29 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class Login extends Application {
-    static Database db;
-    @Override
-    public void start(Stage stage) throws IOException, SQLException {
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+public class Login extends DatabaseConnection {
+    Stage stage;
 
-        Scene scene = new Scene(root);
-        stage.setTitle("Login");
-        stage.setScene(scene);
-        stage.show();
-        db = new Database();
+    public Login() throws SQLException{
+        // Establish sql connection
+        super();
     }
 
-    @FXML
-    TextField usernameField;
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
-    @FXML
-    PasswordField passwordField;
+   @FXML
+   TextField usernameField;
 
+   @FXML
+   PasswordField passwordField;
 
+   @FXML
+   public void loginAccount() throws SQLException {
 
-    @FXML
-    public void loginAccount() throws SQLException {
-
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+       String username = usernameField.getText();
+       String password = passwordField.getText();
 
         if(username.isEmpty() || password.isEmpty()) {
             Alert a = new Alert(Alert.AlertType.ERROR);
@@ -44,7 +40,30 @@ public class Login extends Application {
             a.show();
         }
 
-        System.out.println(db.checkCredentials(username, password));
+        System.out.println("Login Pressed");
+
+        sqlCommand = "SELECT UserID FROM Credentials WHERE Email = ? AND Password = ?";
+        statement = con.prepareStatement(sqlCommand);
+        statement.setString(1, username);
+        statement.setString(2, password);
+
+        resultSet = statement.executeQuery();
+
+        try {
+            if (resultSet.next()) {
+                stage.close();
+                Home.UserID = resultSet.getInt(1);
+                System.out.println(Home.UserID);
+                Main.switchHomePage(stage);
+            }
+        }
+        catch (SQLException e) {
+            // Add function to indicate login details is wrong
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
