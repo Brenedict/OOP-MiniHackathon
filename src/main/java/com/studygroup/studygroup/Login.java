@@ -11,15 +11,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class Login extends DatabaseConnection {
-    Stage stage;
 
     public Login() throws SQLException{
         // Establish sql connection
         super();
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
     }
 
    @FXML
@@ -42,7 +37,7 @@ public class Login extends DatabaseConnection {
 
         System.out.println("Login Pressed");
 
-        sqlCommand = "SELECT UserID FROM Credentials WHERE Email = ? AND Password = ?";
+        sqlCommand = "SELECT UserID, Email FROM Credentials WHERE Email = ? AND Password = ?";
         statement = con.prepareStatement(sqlCommand);
         statement.setString(1, username);
         statement.setString(2, password);
@@ -51,10 +46,11 @@ public class Login extends DatabaseConnection {
 
         try {
             if (resultSet.next()) {
-                stage.close();
+                Main.stage.close();
                 Home.UserID = resultSet.getInt(1);
+                Home.Username = resultSet.getString(2);
                 System.out.println(Home.UserID);
-                Main.switchHomePage(stage);
+                Main.switchHomePage();
             }
         }
         catch (SQLException e) {
@@ -64,8 +60,6 @@ public class Login extends DatabaseConnection {
         catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
 }

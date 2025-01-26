@@ -21,7 +21,8 @@
                         <VBox fx:id="postBox" prefHeight="334.0" prefWidth="480.0" />
                      </content>
                   </ScrollPane>
-                  <Button layoutX="516.0" layoutY="61.0" mnemonicParsing="false" onAction="#createNewGroup" text="Button" />
+                  <Button layoutX="516.0" layoutY="61.0" mnemonicParsing="false" onAction="#createNewGroup" text="Create" />
+                  <Button layoutX="507.0" layoutY="118.0" mnemonicParsing="false" onAction="#loadChatPage" text="Chat Page" />
                </children>
             </AnchorPane>
          </center>

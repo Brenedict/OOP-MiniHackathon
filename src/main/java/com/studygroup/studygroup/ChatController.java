@@ -4,14 +4,18 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
+import java.sql.SQLException;
 
-public class ChatController {
-
+public class ChatController extends DatabaseConnection{
+    public ChatController() throws SQLException {
+        super();
+    }
     @FXML
     private TextArea messageArea;
 
@@ -65,10 +69,7 @@ public class ChatController {
             group = InetAddress.getByName(host);
             this.port = port;
 
-            // Ask for the user's name
-            TextInputDialog dialog = new TextInputDialog();
-            dialog.setContentText("Enter your name:");
-            name = dialog.showAndWait().orElse("User");
+            name = Home.Username;
 
             // Initialize the socket
             socket = new MulticastSocket(this.port);
@@ -158,4 +159,6 @@ public class ChatController {
             e.printStackTrace();
         }
     }
+
+
 }

@@ -5,14 +5,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class Home extends DatabaseConnection{
+    Stage stage;
+
     static int UserID;
+    static String Username;
+
     public Home() throws SQLException {
         super();
 
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     @FXML
@@ -23,6 +33,11 @@ public class Home extends DatabaseConnection{
     @FXML
     public void createNewGroup() {
 
+    }
+
+    @FXML
+    public void loadChatPage() throws IOException {
+        Main.switchChatPage();
     }
 
     @FXML
