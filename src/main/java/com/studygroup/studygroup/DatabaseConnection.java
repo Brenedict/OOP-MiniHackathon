@@ -9,7 +9,7 @@ public class DatabaseConnection {
     String sqlCommand;
 
     DatabaseConnection() throws SQLException {
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/StudyGroup", "root", "Benedict#28");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studygroup", "root", "07282005");
     }
 
     public boolean checkTable(String tableName) {

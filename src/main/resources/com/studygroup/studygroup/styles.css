@@ -1,0 +1,21 @@
+#sidePanel{
+    -fx-background-color: #800000;
+}
+
+#homeButton, #messageButton, #notifButton, #settingsButton, #sendButton{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+#anchorMessages, #anchorRooms{
+    -fx-background-color: #d3d3d3;
+}
+
+/*
+.scroll-pane .scroll-bar:horizontal {
+    -fx-background-color:  #d3d3d3;
+        -fx-opacity: 0;
+           -fx-padding: 0;
+           -fx-pref-height: 0;
+}*/

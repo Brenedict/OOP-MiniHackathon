@@ -4,15 +4,15 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="591.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studygroup.studygroup.ChatController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="591.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studygroup.studygroup.ChatController">
+
    <children>
-      <VBox id="vBoxLeft" layoutX="-2.0" layoutY="-2.0" prefHeight="400.0" prefWidth="108.0" style="-fx-background-color: #800000;" stylesheets="@application.css">
+      <VBox id="vBoxLeft" layoutX="-2.0" layoutY="-2.0" prefHeight="400.0" prefWidth="108.0" style="-fx-background-color: #800000;">
          <children>
             <AnchorPane prefHeight="429.0" prefWidth="108.0" style="-fx-background-color: #800000;">
                <children>
@@ -20,7 +20,7 @@
                      <image>
 <!--                        <Image url="@../../../user.png" />-->
                      </image></ImageView>
-                  <Button layoutX="11.0" layoutY="117.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #FEDE01;" stylesheets="@application.css" text="Button" />
+                  <Button layoutX="11.0" layoutY="117.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #FEDE01;" text="Button" />
                   <Button layoutX="11.0" layoutY="150.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Button" />
                   <Button layoutX="11.0" layoutY="181.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Button" />
                   <Button layoutX="11.0" layoutY="212.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Button" />
@@ -44,7 +44,7 @@
          </children>
       </VBox>
       
-      <ScrollPane id="scrollPaneLeft" layoutX="234.0" layoutY="1.0" prefHeight="400.0" prefWidth="349.0">
+      <ScrollPane id="scrollPaneLeft" fx:id="scrollPaneLeft" layoutX="234.0" layoutY="1.0" prefHeight="400.0" prefWidth="349.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="391.0" prefWidth="348.0">
                <children>
