@@ -1,3 +1,7 @@
+// CREATE Credentials TABLE
+
+
+// CREATE ChatGroups Table
 CREATE TABLE ChatGroups(
 	ChatGroupID VARCHAR(5),
     ChatGroupName VARCHAR(50),
@@ -6,6 +10,21 @@ CREATE TABLE ChatGroups(
     ChatTitle VARCHAR(50),
     ChatDescription VARCHAR(350),
     UserID INT CHECK (UserID >= 10000 AND UserID <= 999999999)
+);
+
+// Create GroupMembershipsTable
+CREATE TABLE GroupMemberships (
+	UserID INT CHECK (UserID >= 10000 AND UserID <= 999999999),
+    ChatGroupID VARCHAR(5)
+);
+
+// Create ChatGroupDetails
+CREATE TABLE ChatGroupDetails (
+    ChatGroupID VARCHAR(5),
+    ChatGroupName VARCHAR(50),
+    UserID INT CHECK (UserID >= 10000 AND UserID <= 999999999),
+    IP VARCHAR(15),
+    PortNumber INT
 );
 
 // SAMPLE DATA SET OF GROUP CHATS
@@ -20,11 +39,11 @@ INSERT INTO chatgroups (chatgroupid, chatgroupname, creatorrole, coursecategory,
 ('D2E3F', 'Digital Art Group', 'tutor', 'BS Fine Arts', 'Digital Painting Basics', 'A creative space for beginners to learn digital art techniques and software skills.', 22334),
 ('F1G2H', 'AI Club', 'tutor', 'BS Computer Science', 'Introduction to Machine Learning', 'Studying the fundamentals of machine learning algorithms and their real-world applications.', 56789),
 ('C3D4E', 'Psychology Group', 'user', 'BA Psychology', 'Human Behavior', 'A group to explore and discuss the theories behind human behavior and psychological concepts.', 89012),
-('B5C6D', 'Business Studies Forum', 'user', 'BS Business Administration', 'Marketing Strategies', 'A group for discussing modern marketing strategies in the business world.', 34567),
 ('D8E9F', 'Engineering Forum', 'tutor', 'BS Civil Engineering', 'Structural Analysis', 'A group for civil engineering students focused on structural analysis and material properties.', 67891),
-('A4B7C', 'Philosophy Circle', 'user', 'BA Philosophy', 'Ethical Theories', 'Examining ethical theories and their implications on modern society and individual decisions.', 23456),
+('B5C6D', 'Business Studies Forum', 'user', 'BS Business Administration', 'Marketing Strategies', 'A group for discussing modern marketing strategies in the business world.', 34567),
 ('F0G3H', 'Software Dev Network', 'tutor', 'BS Software Engineering', 'Agile Methodology', 'Studying Agile methodology and its role in modern software development projects.', 12346),
 ('C1D3E', 'Music Theory Club', 'user', 'BA Music', 'Advanced Harmony', 'A study group for advanced students exploring harmonic structures in classical music compositions.', 78910);
+('A4B7C', 'Philosophy Circle', 'user', 'BA Philosophy', 'Ethical Theories', 'Examining ethical theories and their implications on modern society and individual decisions.', 23456),
 
 INSERT INTO credentials (email, password, UserID) VALUES
 ('admin', 'admin', 12345),
@@ -42,3 +61,25 @@ INSERT INTO credentials (email, password, UserID) VALUES
 ('user10', 'pass10', 23456),
 ('user11', 'pass11', 12346),
 ('user12', 'pass12', 78910);
+
+// GroupMemberships Example
+INSERT INTO GroupMemberships
+VALUES
+(12345,'D3F4G'),
+(12345,'B2C3D'),
+(12345,'C4D5E'),
+(12345,'F1G2H'),
+(12345,'C1D3E');
+
+INSERT INTO ChatGroupDetails(chatgroupid, userid, IP, PortNumber)
+VALUES
+('A1B2C', 12345, '239.0.0.1', 1234),
+('D3F4G', 67890, '239.0.0.2', 1234),
+('B2C3D',13579, '239.0.0.3', 1234),
+('F5G6H',24680, '239.0.0.4', 1234),
+('C4D5E',11223, '239.0.0.5', 1234),
+('G7H8I',44556, '239.0.0.6', 1234),
+('A9B0C',78901, '239.0.0.7', 1234),
+('D2E3F',22334, '239.0.0.8', 1234),
+('F1G2H',56789, '239.0.0.9', 1234),
+('C3D4E',89012, '239.0.0.10', 1234);

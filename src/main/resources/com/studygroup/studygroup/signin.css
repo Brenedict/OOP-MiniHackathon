@@ -1,0 +1,39 @@
+@font-face {
+    font-family: "Open Sauce";
+    src: url("fonts/OpenSauceSans-Regular.ttf");
+}
+
+.root {
+    -fx-font-family: 'OpenSauce';
+    -fx-background-color: #f5f5f5;
+}
+
+.label {
+    -fx-font-family: 'OpenSauce';
+}
+
+.button {
+    -fx-background-color: #800000;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 5px 10px;
+    -fx-background-radius: 15px;
+    -fx-pref-width: 188px;
+    -fx-pref-height: 32px;
+}
+
+.text-field {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #800000;
+    -fx-border-radius: 15px;
+    -fx-padding: 5px;
+    -fx-pref-height: 32px;
+}
+
+.button:hover {
+    -fx-background-color: #990000;
+}
+
+.text-field:focused {
+    -fx-border-color: #990000;
+}
