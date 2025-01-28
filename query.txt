@@ -1,0 +1,44 @@
+CREATE TABLE ChatGroups(
+	ChatGroupID VARCHAR(5),
+    ChatGroupName VARCHAR(50),
+    CreatorRole VARCHAR(5),
+    CourseCategory VARCHAR(255),
+    ChatTitle VARCHAR(50),
+    ChatDescription VARCHAR(350),
+    UserID INT CHECK (UserID >= 10000 AND UserID <= 999999999)
+);
+
+// SAMPLE DATA SET OF GROUP CHATS
+INSERT INTO chatgroups (chatgroupid, chatgroupname, creatorrole, coursecategory, chattitle, chatdescription, userid) VALUES
+('A1B2C', 'Tech Talks', 'tutor', 'BS Computer Science', 'Introduction to Java', 'A group for learning the basics of Java programming, from variables to object-oriented concepts.', 12345),
+('D3F4G', 'Math Club', 'user', 'BS Mathematics', 'Algebra 101', 'A beginner-level group focused on basic algebra techniques and problem-solving strategies.', 67890),
+('B2C3D', 'Chemistry Lab', 'tutor', 'BS Chemistry', 'Organic Chemistry', 'Group discussions on organic chemistry topics and practical lab work for students.', 13579),
+('F5G6H', 'History Society', 'user', 'BA History', 'Ancient Civilizations', 'Exploring ancient civilizations through reading, research, and group discussions.', 24680),
+('C4D5E', 'Programming Club', 'tutor', 'BS Information Technology', 'Intro to Python', 'A study group for students new to Python programming, focusing on syntax and basic projects.', 11223),
+('G7H8I', 'Physics Enthusiasts', 'user', 'BS Physics', 'Quantum Mechanics', 'Discussing key concepts of quantum mechanics and the mysteries of the universe.', 44556),
+('A9B0C', 'Literature Lovers', 'user', 'BA Literature', 'Shakespeare’s Works', 'A group for reading and analyzing the works of Shakespeare and other classic literature.', 78901),
+('D2E3F', 'Digital Art Group', 'tutor', 'BS Fine Arts', 'Digital Painting Basics', 'A creative space for beginners to learn digital art techniques and software skills.', 22334),
+('F1G2H', 'AI Club', 'tutor', 'BS Computer Science', 'Introduction to Machine Learning', 'Studying the fundamentals of machine learning algorithms and their real-world applications.', 56789),
+('C3D4E', 'Psychology Group', 'user', 'BA Psychology', 'Human Behavior', 'A group to explore and discuss the theories behind human behavior and psychological concepts.', 89012),
+('B5C6D', 'Business Studies Forum', 'user', 'BS Business Administration', 'Marketing Strategies', 'A group for discussing modern marketing strategies in the business world.', 34567),
+('D8E9F', 'Engineering Forum', 'tutor', 'BS Civil Engineering', 'Structural Analysis', 'A group for civil engineering students focused on structural analysis and material properties.', 67891),
+('A4B7C', 'Philosophy Circle', 'user', 'BA Philosophy', 'Ethical Theories', 'Examining ethical theories and their implications on modern society and individual decisions.', 23456),
+('F0G3H', 'Software Dev Network', 'tutor', 'BS Software Engineering', 'Agile Methodology', 'Studying Agile methodology and its role in modern software development projects.', 12346),
+('C1D3E', 'Music Theory Club', 'user', 'BA Music', 'Advanced Harmony', 'A study group for advanced students exploring harmonic structures in classical music compositions.', 78910);
+
+INSERT INTO credentials (email, password, UserID) VALUES
+('admin', 'admin', 12345),
+('benedict', 'benedict', 67890),
+('admin1', 'admin1', 13579),
+('user1', 'pass1', 24680),
+('user2', 'pass2', 11223),
+('user3', 'pass3', 44556),
+('user4', 'pass4', 78901),
+('user5', 'pass5', 22334),
+('user6', 'pass6', 56789),
+('user7', 'pass7', 89012),
+('user8', 'pass8', 34567),
+('user9', 'pass9', 67891),
+('user10', 'pass10', 23456),
+('user11', 'pass11', 12346),
+('user12', 'pass12', 78910);

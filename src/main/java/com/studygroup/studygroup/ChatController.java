@@ -4,14 +4,18 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
+import java.sql.SQLException;
 
-public class ChatController {
-
+public class ChatController extends DatabaseConnection{
+    public ChatController() throws SQLException {
+        super();
+    }
     @FXML
     private TextArea messageArea;
 
@@ -31,13 +35,15 @@ public class ChatController {
     private volatile boolean running = true; // Used to control the ReadThread loop
 
     private String[][] groupDetails = {
-            {"239.0.0.0", "1000"},
-            {"239.0.0.1", "1001"}
+            {"239.0.0.0", "1234"},
+            {"240.19.2.1", "1523"},
+            {"239.0.2.90", "1000"},
+            {"239.0.0.1", "1900"}
     };
 
     public void initialize() {
         // Initialize the default group
-        initChat("239.0.0.0", 1000);
+        initChat("239.0.0.0", 1234);
 
         // Add buttons for group switching
         for (String[] groupDetail : groupDetails) {
@@ -63,10 +69,7 @@ public class ChatController {
             group = InetAddress.getByName(host);
             this.port = port;
 
-            // Ask for the user's name
-            TextInputDialog dialog = new TextInputDialog();
-            dialog.setContentText("Enter your name:");
-            name = dialog.showAndWait().orElse("User");
+            name = Home.Username;
 
             // Initialize the socket
             socket = new MulticastSocket(this.port);
@@ -156,4 +159,6 @@ public class ChatController {
             e.printStackTrace();
         }
     }
+
+
 }
