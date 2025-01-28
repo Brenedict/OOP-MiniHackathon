@@ -16,8 +16,8 @@ import java.sql.SQLException;
 
 /*
 * BINAS, There is still flaw on the logic of switching ports, IP,
-* supposedly next in line is to load all scenes upon sucessful login
-* to avoid loading them repetitely, and instead would just switch in between scenes
+* supposedly next in line is to load all scenes upon successful login
+* to avoid loading them repetitively, and instead would just switch in between scenes
 * however in theory this would leave the listening thread still active in the background
 * */
 

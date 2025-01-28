@@ -1,21 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="321.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studygroup.studygroup.Login">
-   <children>
-      <TextField fx:id="usernameField" layoutX="46.0" layoutY="111.0" prefHeight="40.0" prefWidth="230.0" promptText="Username" />
-      <Button fx:id="loginButton" layoutX="46.0" layoutY="259.0" mnemonicParsing="false" onAction="#loginAccount" prefHeight="25.0" prefWidth="230.0" text="LOG IN" />
-      <PasswordField fx:id="passwordField" layoutX="46.0" layoutY="190.0" prefHeight="40.0" prefWidth="230.0" promptText="Password" />
-      <ImageView fitHeight="40.0" fitWidth="275.0" layoutX="42.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../logo.png" />
-         </image>
-      </ImageView>
-   </children>
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <AnchorPane prefHeight="720.0" prefWidth="720.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="557.0" fitWidth="625.0" layoutX="107.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="325.0" layoutY="98.0" prefHeight="79.0" prefWidth="237.0" text="Buddy" textFill="MAROON">
+               <font>
+                  <Font name="Open Sauce One ExtraBold" size="64.0" />
+               </font>
+            </Label>
+            <Label layoutX="139.0" layoutY="99.0" prefHeight="79.0" prefWidth="210.0" text="Study" textFill="#ffdf00">
+               <font>
+                  <Font name="Open Sauce One ExtraBold" size="64.0" />
+               </font>
+            </Label>
+            <Label layoutX="141.0" layoutY="170.0" prefHeight="34.0" prefWidth="293.0" text="Study Smarter, Together.">
+               <font>
+                  <Font name="Open Sauce One Regular" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane accessibleRole="TEXT" prefHeight="720.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField id="studNumber" layoutX="9.0" layoutY="237.0" prefHeight="50.0" prefWidth="326.0" promptText="Email or Phone Number *">
+               <font>
+                  <Font name="Open Sauce One Regular" size="18.0" />
+               </font>
+            </TextField>
+            <ButtonBar layoutX="-118.0" layoutY="142.0" prefHeight="40.0" prefWidth="200.0" />
+            <Button id="signIn" layoutX="9.0" layoutY="430.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="326.0" style="-fx-background-color: #800000; -fx-font-size: 20px; -fx-font-weight: bold;" text="Log in" textFill="WHITE">
+               <font>
+                  <Font name="Open Sauce One Regular" size="20.0" />
+               </font></Button>
+            <Label layoutX="11.0" layoutY="151.0" prefHeight="62.0" prefWidth="92.0" text="Join" textFill="#daa51f">
+               <font>
+                  <Font name="Open Sauce One SemiBold" size="48.0" />
+               </font>
+            </Label>
+            <Label layoutX="111.0" layoutY="151.0" text="now!" textFill="MAROON">
+               <font>
+                  <Font name="Open Sauce One SemiBold" size="48.0" />
+               </font>
+            </Label>
+            <Hyperlink layoutX="5.0" layoutY="364.0" text="Forgot password?" textFill="MAROON">
+               <font>
+                  <Font name="Open Sauce One Regular" size="14.0" />
+               </font>
+            </Hyperlink>
+            <PasswordField fx:id="passwordField" layoutX="9.0" layoutY="306.0" prefHeight="50.0" prefWidth="326.0" promptText="Password *">
+               <font>
+                  <Font name="Open Sauce One Regular" size="18.0" />
+               </font>
+            </PasswordField>
+            <Hyperlink layoutX="152.0" layoutY="389.0" text="Create a new account" textFill="MAROON">
+               <font>
+                  <Font name="Open Sauce One Regular" size="14.0" />
+               </font>
+            </Hyperlink>
+            <Text layoutX="10.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New to StudyBuddy?">
+               <font>
+                  <Font name="Open Sauce One Regular" size="14.0" />
+               </font>
+            </Text>
+            <Hyperlink layoutX="198.0" layoutY="490.0" text="User Agreement" textFill="MAROON">
+               <font>
+                  <Font name="Open Sauce One Regular" size="12.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink layoutX="239.0" layoutY="506.0" text="Privacy Policy" textFill="MAROON">
+               <font>
+                  <Font name="Open Sauce One Regular" size="12.0" />
+               </font>
+            </Hyperlink>
+            <Label layoutX="22.0" layoutY="482.0" prefHeight="39.0" prefWidth="184.0" text="By logging in, you agree to our " textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Open Sauce One Regular" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="301.0" layoutY="491.0" prefHeight="21.0" prefWidth="27.0" text="and" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Open Sauce One Regular" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="504.0" prefHeight="24.0" prefWidth="224.0" text="acknowledge that you understand the" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Open Sauce One Regular" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="323.0" layoutY="509.0" prefHeight="15.0" prefWidth="8.0" text="." textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Open Sauce One Regular" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
