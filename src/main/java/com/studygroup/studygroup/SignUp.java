@@ -17,7 +17,7 @@ public class SignUp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sign-up.fxml"));
 
         Scene scene = new Scene(root);
-        stage.setTitle("Login");
+        stage.setTitle("Create New Account");
         stage.setScene(scene);
         stage.show();
     }

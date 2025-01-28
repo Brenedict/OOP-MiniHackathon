@@ -1,11 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studygroup.studygroup.SignUp">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studygroup.studygroup.SignUp">
    <children>
-      <TextField layoutX="158.0" layoutY="89.0" prefHeight="34.0" prefWidth="285.0" />
+      <ImageView fx:id="logo" fitHeight="144.0" fitWidth="380.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/logoWithTitle.png" />
+         </image>
+      </ImageView>
+      <Text fill="MAROON" layoutX="458.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="title" text="Create New Account" textAlignment="CENTER" wrappingWidth="376.00009765624986">
+         <font>
+            <Font name="Open Sauce One Bold" size="36.0" />
+         </font>
+      </Text>
+      <Text layoutX="416.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="label" text="First Name">
+         <font>
+            <Font name="Open Sauce One Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField layoutX="415.0" layoutY="164.0" prefHeight="38.0" prefWidth="220.0" style="-fx-border-width: 5px;" styleClass="input-box">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font></TextField>
+      <Text layoutX="646.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="label" text="Last Name">
+         <font>
+            <Font name="Open Sauce One Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="415.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="label" text="Username">
+         <font>
+            <Font name="Open Sauce One Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="415.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="label" text="Email Address">
+         <font>
+            <Font name="Open Sauce One Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField layoutX="414.0" layoutY="309.0" prefHeight="37.0" prefWidth="450.0" style="-fx-border-width: 5px;" styleClass="input-box">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </TextField>
+      <Text layoutX="414.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="label" text="Phone Number">
+         <font>
+            <Font name="Open Sauce One Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField layoutX="414.0" layoutY="456.0" prefHeight="37.0" prefWidth="450.0" style="-fx-border-width: 5px;" styleClass="input-box">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="646.0" layoutY="165.0" prefHeight="38.0" prefWidth="220.0" style="-fx-border-width: 5px;" styleClass="input-box">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="415.0" layoutY="237.0" prefHeight="38.0" prefWidth="450.0" style="-fx-border-width: 5px;" styleClass="input-box">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </TextField>
+      <Text layoutX="414.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="label" text="Gender">
+         <font>
+            <Font name="Open Sauce One Bold" size="18.0" />
+         </font>
+      </Text>
+      <Button layoutX="413.0" layoutY="531.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" styleClass="gender-button" text="Male">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="573.0" layoutY="531.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" styleClass="gender-button" text="Female">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="729.0" layoutY="531.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" styleClass="gender-button" text="Prefer not to say">
+         <font>
+            <Font name="Open Sauce One Regular" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Text layoutX="415.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="label" text="Password">
+         <font>
+            <Font name="Open Sauce One Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField accessibleRole="PASSWORD_FIELD" layoutX="414.0" layoutY="382.0" prefHeight="37.0" prefWidth="450.0" style="-fx-border-width: 5px;" styleClass="input-box">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </TextField>
+      <Button graphicTextGap="0.0" layoutX="539.0" layoutY="629.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #800000; -fx-font-weight: bold; -fx-font-size: 18px;" styleClass="create-account-button" text="Create Account" textFill="WHITE">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <RadioButton layoutX="578.0" layoutY="590.0" mnemonicParsing="false" text="Tutor">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="userType" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="676.0" layoutY="590.0" mnemonicParsing="false" text="Student" toggleGroup="$userType">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </RadioButton>
+      <Text layoutX="492.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="I am a:">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
