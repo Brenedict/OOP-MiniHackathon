@@ -3,9 +3,11 @@ package com.studygroup.studygroup;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.geometry.Pos;
 
+import javafx.scene.text.Text;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
@@ -18,7 +20,7 @@ public class ChatController extends DatabaseConnection{
         super();
     }
     @FXML
-    private TextArea messageArea;
+    private VBox messageBox;
 
     @FXML
     private TextField messageField;
@@ -27,7 +29,7 @@ public class ChatController extends DatabaseConnection{
     private Button sendButton;
 
     @FXML
-    private VBox sidePanel;
+    private VBox groupsBox;
 
     private MulticastSocket socket;
     private InetAddress group;
@@ -43,7 +45,7 @@ public class ChatController extends DatabaseConnection{
     };
 
     public ResultSet getUserGroupChats(int UserID) throws SQLException {
-        sqlCommand = "SELECT * FROM ChatGroupDetails JOIN GroupMemberships ON GroupMemberships.ChatGroupID = ChatGroupDetails.ChatGroupID WHERE GroupMemberships.UserID = ?;";
+        sqlCommand = "SELECT * FROM ChatGroups JOIN GroupMemberships ON GroupMemberships.ChatGroupID = ChatGroups.ChatGroupID WHERE GroupMemberships.UserID = ?;";
         statement = con.prepareStatement(sqlCommand);
         statement.setInt(1, UserID);
 
@@ -59,7 +61,7 @@ public class ChatController extends DatabaseConnection{
             int groupPort = resultGroupChats.getInt("PortNumber"); // Replace with actual column name
             Button button = new Button("Connect to " + groupAddress + ":" + groupPort);
             button.setOnAction(e -> switchGroup(groupAddress, groupPort));
-            sidePanel.getChildren().add(button);
+            groupsBox.getChildren().add(button);
         }
 
         // Set actions for sending messages
@@ -93,7 +95,6 @@ public class ChatController extends DatabaseConnection{
             new Thread(new ReadThread(socket, group, this.port)).start();
 
             // Notify the user
-            appendMessage("Connected to group " + host + ":" + port);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -104,9 +105,9 @@ public class ChatController extends DatabaseConnection{
     private void sendMessage() {
         String message = messageField.getText();
         if (!message.isEmpty()) {
+            appendMessage(name + ": " + message, true);
             try {
                 String fullMessage = name + ": " + message;
-                messageArea.appendText(fullMessage + "\n");
 
                 byte[] buffer = fullMessage.getBytes();
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, port);
@@ -120,12 +121,28 @@ public class ChatController extends DatabaseConnection{
     }
 
     private void switchGroup(String groupAddress, int port) {
-        appendMessage("Switching to group " + groupAddress + ":" + port);
         initChat(groupAddress, port);
     }
 
-    private void appendMessage(String message) {
-        Platform.runLater(() -> messageArea.appendText(message + "\n"));
+    private void appendMessage(String message, boolean isUserMessage) {
+        Platform.runLater(() -> {
+            // Create a new HBox for the message
+            HBox messageBoxContainer = new HBox(10);
+
+            Text messageText = new Text(message);
+            messageText.getStyleClass().add(isUserMessage ? "chat-bubble-you" : "chat-bubble-other");
+
+            if (isUserMessage) {
+                messageBoxContainer.getChildren().add(messageText);
+                messageBoxContainer.setAlignment(Pos.CENTER_RIGHT);
+            } else {
+                messageBoxContainer.getChildren().add(messageText);
+                messageBoxContainer.setAlignment(Pos.CENTER_LEFT);
+            }
+
+            // Add the new message box to the main message box
+            messageBox.getChildren().add(messageBoxContainer);
+        });
     }
 
     private class ReadThread implements Runnable {
@@ -149,7 +166,7 @@ public class ChatController extends DatabaseConnection{
                     String message = new String(buffer, 0, packet.getLength());
 
                     if (!message.startsWith(name)) {
-                        appendMessage(message);
+                        appendMessage(message, false);
                     }
                 }
             } catch (IOException e) {

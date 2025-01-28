@@ -16,10 +16,8 @@ import java.sql.SQLException;
 
 
 /*
-* BINAS, There is still flaw on the logic of switching ports, IP,
-* supposedly next in line is to load all scenes upon sucessful login
-* to avoid loading them repetitely, and instead would just switch in between scenes
-* however in theory this would leave the listening thread still active in the background
+* BINAS, There is something wrong with the port and ip generator, you still need to add the leave group fucntion, a ui for homepage,
+* The create new group wont close, sign up logic, pictures, file sending, MESSAGE HISTORY, PROPER CHAT UI
 * */
 
 
@@ -65,7 +63,7 @@ public class Main extends Application {
     }
 
     public static void switchChatPage() throws IOException {
-        FXMLLoader chatLoader = new FXMLLoader(Main.class.getResource("messaging2.fxml"));
+        FXMLLoader chatLoader = new FXMLLoader(Main.class.getResource("newChatLayout.fxml"));
         Parent chatRoot = chatLoader.load();
         chatScene = new Scene(chatRoot);
 

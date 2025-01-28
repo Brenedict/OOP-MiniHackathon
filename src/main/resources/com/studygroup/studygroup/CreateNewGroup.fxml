@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      alignment="CENTER" spacing="15" style="-fx-padding: 20;" fx:id="createNewGroupRoot" fx:controller="com.studygroup.studygroup.CreateNewGroupController">
+
+    <!-- Title Bar -->
+    <HBox alignment="TOP_RIGHT" spacing="5">
+        <Button text="X" onAction="#closeWindow" style="-fx-background-color: red; -fx-text-fill: white;" />
+    </HBox>
+
+    <!-- Title -->
+    <Label text="Create New Group" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <!-- Input Fields -->
+    <VBox alignment="CENTER_LEFT" spacing="10" style="-fx-pref-width: 300;">
+        <Label text="Group Name:" />
+        <TextField fx:id="groupNameField" promptText="Enter group name" />
+
+        <Label text="Course Category:" />
+        <TextField fx:id="courseCategoryField" promptText="Enter course category" />
+
+        <Label text="Chat Title:" />
+        <TextField fx:id="chatTitleField" promptText="Enter chat title" />
+
+        <Label text="Description:" />
+        <TextArea fx:id="chatDescriptionField" promptText="Enter group description" wrapText="true" style="-fx-pref-height: 100;" />
+    </VBox>
+
+    <!-- Create Button -->
+    <Button text="Create Group" onAction="#createGroup" style="-fx-background-color: green; -fx-text-fill: white;" />
+</VBox>

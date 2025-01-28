@@ -42,7 +42,19 @@ public class Home extends DatabaseConnection{
 
     @FXML
     public void createNewGroup() {
+        try {
+            // Load the FXML for the popup
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateNewGroup.fxml"));
+            VBox popupRoot = loader.load();
 
+            // Create a new stage for the popup
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Create New Group");
+            popupStage.setScene(new javafx.scene.Scene(popupRoot));
+            popupStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

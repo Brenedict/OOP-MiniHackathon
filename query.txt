@@ -9,7 +9,9 @@ CREATE TABLE ChatGroups(
     CourseCategory VARCHAR(255),
     ChatTitle VARCHAR(50),
     ChatDescription VARCHAR(350),
-    UserID INT CHECK (UserID >= 10000 AND UserID <= 999999999)
+    UserID INT CHECK (UserID >= 10000 AND UserID <= 999999999),
+    IP VARCHAR(15),
+    PortNumber INT
 );
 
 // Create GroupMembershipsTable
@@ -18,32 +20,23 @@ CREATE TABLE GroupMemberships (
     ChatGroupID VARCHAR(5)
 );
 
-// Create ChatGroupDetails
-CREATE TABLE ChatGroupDetails (
-    ChatGroupID VARCHAR(5),
-    ChatGroupName VARCHAR(50),
-    UserID INT CHECK (UserID >= 10000 AND UserID <= 999999999),
-    IP VARCHAR(15),
-    PortNumber INT
-);
-
 // SAMPLE DATA SET OF GROUP CHATS
-INSERT INTO chatgroups (chatgroupid, chatgroupname, creatorrole, coursecategory, chattitle, chatdescription, userid) VALUES
-('A1B2C', 'Tech Talks', 'tutor', 'BS Computer Science', 'Introduction to Java', 'A group for learning the basics of Java programming, from variables to object-oriented concepts.', 12345),
-('D3F4G', 'Math Club', 'user', 'BS Mathematics', 'Algebra 101', 'A beginner-level group focused on basic algebra techniques and problem-solving strategies.', 67890),
-('B2C3D', 'Chemistry Lab', 'tutor', 'BS Chemistry', 'Organic Chemistry', 'Group discussions on organic chemistry topics and practical lab work for students.', 13579),
-('F5G6H', 'History Society', 'user', 'BA History', 'Ancient Civilizations', 'Exploring ancient civilizations through reading, research, and group discussions.', 24680),
-('C4D5E', 'Programming Club', 'tutor', 'BS Information Technology', 'Intro to Python', 'A study group for students new to Python programming, focusing on syntax and basic projects.', 11223),
-('G7H8I', 'Physics Enthusiasts', 'user', 'BS Physics', 'Quantum Mechanics', 'Discussing key concepts of quantum mechanics and the mysteries of the universe.', 44556),
-('A9B0C', 'Literature Lovers', 'user', 'BA Literature', 'Shakespeare’s Works', 'A group for reading and analyzing the works of Shakespeare and other classic literature.', 78901),
-('D2E3F', 'Digital Art Group', 'tutor', 'BS Fine Arts', 'Digital Painting Basics', 'A creative space for beginners to learn digital art techniques and software skills.', 22334),
-('F1G2H', 'AI Club', 'tutor', 'BS Computer Science', 'Introduction to Machine Learning', 'Studying the fundamentals of machine learning algorithms and their real-world applications.', 56789),
-('C3D4E', 'Psychology Group', 'user', 'BA Psychology', 'Human Behavior', 'A group to explore and discuss the theories behind human behavior and psychological concepts.', 89012),
-('D8E9F', 'Engineering Forum', 'tutor', 'BS Civil Engineering', 'Structural Analysis', 'A group for civil engineering students focused on structural analysis and material properties.', 67891),
-('B5C6D', 'Business Studies Forum', 'user', 'BS Business Administration', 'Marketing Strategies', 'A group for discussing modern marketing strategies in the business world.', 34567),
-('F0G3H', 'Software Dev Network', 'tutor', 'BS Software Engineering', 'Agile Methodology', 'Studying Agile methodology and its role in modern software development projects.', 12346),
-('C1D3E', 'Music Theory Club', 'user', 'BA Music', 'Advanced Harmony', 'A study group for advanced students exploring harmonic structures in classical music compositions.', 78910);
-('A4B7C', 'Philosophy Circle', 'user', 'BA Philosophy', 'Ethical Theories', 'Examining ethical theories and their implications on modern society and individual decisions.', 23456),
+INSERT INTO ChatGroups (ChatGroupID, ChatGroupName, CreatorRole, CourseCategory, ChatTitle, ChatDescription, UserID, IP, PortNumber) VALUES
+('A1B2C', 'Tech Talks', 'tutor', 'BS Computer Science', 'Introduction to Java', 'A group for learning the basics of Java programming, from variables to object-oriented concepts.', 12345, '224.0.0.1', 5001),
+('D3F4G', 'Math Club', 'user', 'BS Mathematics', 'Algebra 101', 'A beginner-level group focused on basic algebra techniques and problem-solving strategies.', 67890, '224.0.0.2', 5002),
+('B2C3D', 'Chemistry Lab', 'tutor', 'BS Chemistry', 'Organic Chemistry', 'Group discussions on organic chemistry topics and practical lab work for students.', 13579, '224.0.0.3', 5003),
+('F5G6H', 'History Society', 'user', 'BA History', 'Ancient Civilizations', 'Exploring ancient civilizations through reading, research, and group discussions.', 24680, '224.0.0.4', 5004),
+('C4D5E', 'Programming Club', 'tutor', 'BS Information Technology', 'Intro to Python', 'A study group for students new to Python programming, focusing on syntax and basic projects.', 11223, '224.0.0.5', 5005),
+('G7H8I', 'Physics Enthusiasts', 'user', 'BS Physics', 'Quantum Mechanics', 'Discussing key concepts of quantum mechanics and the mysteries of the universe.', 44556, '224.0.0.6', 5006),
+('A9B0C', 'Literature Lovers', 'user', 'BA Literature', 'Shakespeare’s Works', 'A group for reading and analyzing the works of Shakespeare and other classic literature.', 78901, '224.0.0.7', 5007),
+('D2E3F', 'Digital Art Group', 'tutor', 'BS Fine Arts', 'Digital Painting Basics', 'A creative space for beginners to learn digital art techniques and software skills.', 22334, '224.0.0.8', 5008),
+('F1G2H', 'AI Club', 'tutor', 'BS Computer Science', 'Introduction to Machine Learning', 'Studying the fundamentals of machine learning algorithms and their real-world applications.', 56789, '224.0.0.9', 5009),
+('C3D4E', 'Psychology Group', 'user', 'BA Psychology', 'Human Behavior', 'A group to explore and discuss the theories behind human behavior and psychological concepts.', 89012, '224.0.0.10', 5010),
+('D8E9F', 'Engineering Forum', 'tutor', 'BS Civil Engineering', 'Structural Analysis', 'A group for civil engineering students focused on structural analysis and material properties.', 67891, '224.0.0.11', 5011),
+('B5C6D', 'Business Studies Forum', 'user', 'BS Business Administration', 'Marketing Strategies', 'A group for discussing modern marketing strategies in the business world.', 34567, '224.0.0.12', 5012),
+('F0G3H', 'Software Dev Network', 'tutor', 'BS Software Engineering', 'Agile Methodology', 'Studying Agile methodology and its role in modern software development projects.', 12346, '224.0.0.13', 5013),
+('C1D3E', 'Music Theory Club', 'user', 'BA Music', 'Advanced Harmony', 'A study group for advanced students exploring harmonic structures in classical music compositions.', 78910, '224.0.0.14', 5014),
+('A4B7C', 'Philosophy Circle', 'user', 'BA Philosophy', 'Ethical Theories', 'Examining ethical theories and their implications on modern society and individual decisions.', 23456, '224.0.0.15', 5015);
 
 INSERT INTO credentials (email, password, UserID) VALUES
 ('admin', 'admin', 12345),
@@ -71,15 +64,3 @@ VALUES
 (12345,'F1G2H'),
 (12345,'C1D3E');
 
-INSERT INTO ChatGroupDetails(chatgroupid, userid, IP, PortNumber)
-VALUES
-('A1B2C', 12345, '239.0.0.1', 1234),
-('D3F4G', 67890, '239.0.0.2', 1234),
-('B2C3D',13579, '239.0.0.3', 1234),
-('F5G6H',24680, '239.0.0.4', 1234),
-('C4D5E',11223, '239.0.0.5', 1234),
-('G7H8I',44556, '239.0.0.6', 1234),
-('A9B0C',78901, '239.0.0.7', 1234),
-('D2E3F',22334, '239.0.0.8', 1234),
-('F1G2H',56789, '239.0.0.9', 1234),
-('C3D4E',89012, '239.0.0.10', 1234);

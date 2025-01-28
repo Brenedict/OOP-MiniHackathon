@@ -1,0 +1,55 @@
+#sidePanel{
+    -fx-background-color: #800000;
+}
+
+#homeButton, #messageButton, #notifButton, #settingsButton, #sendButton{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+#anchorMessages, #anchorRooms{
+    -fx-background-color: #d3d3d3;
+}
+
+/* Style for the current user's message bubble */
+.chat-bubble-you {
+    -fx-background-color: #DCF8C6;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+    -fx-max-width: 300px;
+    -fx-word-wrap: break-word;
+    -fx-alignment: center-right;
+}
+
+/* Style for other users' message bubble */
+.chat-bubble-other {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E5E5E5;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+    -fx-max-width: 300px;
+    -fx-word-wrap: break-word;
+    -fx-alignment: center-left;
+}
+
+/* Container style for the VBox that holds all chat messages */
+#messageBox {
+    -fx-background-color: #F7F7F7;
+    -fx-border-radius: 10;
+    -fx-padding: 15px;
+    -fx-spacing: 10px;
+    -fx-background-insets: 0, 0, 0;
+}
+
+/*
+.scroll-pane .scroll-bar:horizontal {
+    -fx-background-color:  #d3d3d3;
+        -fx-opacity: 0;
+           -fx-padding: 0;
+           -fx-pref-height: 0;
+}*/
