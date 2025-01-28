@@ -26,11 +26,11 @@ public class testChatMainFunc extends Application {
         launch();
     }
 
-    @Override
-    public void stop() throws Exception {
-        super.stop();
-        if(chatController != null) {
-            chatController.stop();
-        }
-    }
+//    @Override
+//    public void stop() throws Exception {
+//        super.stop();
+//        if(chatController != null) {
+//            chatController.stop();
+//        }
+//    }
 }
