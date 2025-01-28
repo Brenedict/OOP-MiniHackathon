@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studygroup.studygroup.Home">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0">
@@ -16,7 +15,7 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <ScrollPane prefHeight="336.0" prefWidth="485.0">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="336.0" prefWidth="485.0">
                      <content>
                         <VBox fx:id="postBox" prefHeight="334.0" prefWidth="480.0" />
                      </content>

@@ -3,6 +3,7 @@ package com.studygroup.studygroup;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import javafx.application.Application;
@@ -22,13 +23,12 @@ import java.sql.SQLException;
 * */
 
 
-public class Main extends Application{
+public class Main extends Application {
     static volatile boolean finished = false;
-
-    private static ChatController chatController;
 
     public static Stage stage;
     private static Scene homeScene, chatScene;
+
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
@@ -36,11 +36,13 @@ public class Main extends Application{
     }
 
     private void showLoginPage() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sign-in.fxml"));
         Parent root = loader.load();
-        Scene loginScene = new Scene(root);
+        Scene signinScene = new Scene(root);
+        signinScene.getStylesheets().add(getClass().getResource("signin.css").toExternalForm());
+        Font.loadFont(getClass().getResourceAsStream("/fonts/OpenSauce-Black.ttf"), 12);
 
-        stage.setScene(loginScene);
+        stage.setScene(signinScene);
         stage.show();
     }
 
@@ -48,46 +50,32 @@ public class Main extends Application{
         launch();
     }
 
-    public static void successfulLogin() throws IOException {
-        FXMLLoader loader;
-        Parent root;
-
-        // Immediately load all scenes
-        loader = FXMLLoader.load(Main.class.getResource("home.fxml"));
-        root = loader.load();
-        homeScene = new Scene(root);
-    }
-
     public static void switchHomePage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("home.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("home-page.fxml"));
         Parent root = loader.load();
         Scene homeScene = new Scene(root);
+        homeScene.getStylesheets().add(Main.class.getResource("home.css").toExternalForm());
+        Font.loadFont(Main.class.getResourceAsStream("/fonts/OpenSauce-Black.ttf"), 12);
 
         Home homeController = loader.getController();
-        homeController.loadExistingGroups();
+        homeController.loadExistingGroups(); // Explicitly load groups
 
-        stage.setScene(homeScene); // Set the new scene to the same primaryStage
+        stage.setScene(homeScene);
         stage.show();
-
-
     }
 
     public static void switchChatPage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("messaging2.fxml"));
-        Parent root = loader.load();
-        Scene homeScene = new Scene(root);
+        FXMLLoader chatLoader = new FXMLLoader(Main.class.getResource("messaging2.fxml"));
+        Parent chatRoot = chatLoader.load();
+        chatScene = new Scene(chatRoot);
 
-        chatController = loader.getController();
-
-        stage.setScene(homeScene); // Set the new scene to the same primaryStage
+        stage.setScene(chatScene);
         stage.show();
-
-
     }
 
-    // Use this to kill the bg threads
     @Override
     public void stop() {
-
+        finished = true;
+        System.exit(0); // Ensure all threads are terminated
     }
 }

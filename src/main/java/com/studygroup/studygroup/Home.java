@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,9 +27,18 @@ public class Home extends DatabaseConnection{
     }
 
     @FXML
-    public void joinGroup() {
+    public void joinGroup() throws SQLException, IOException {
+        sqlCommand = "INSERT INTO GroupMemberships(UserID, ChatGroupID) VALUES (?, ?);";
+        statement = con.prepareStatement(sqlCommand);
+        statement.setInt(1, Home.UserID);
+        statement.setString(2, (String) buttonJoinGroup.getUserData());
+
+        statement.executeUpdate();
+
+        Main.switchHomePage();
 
     }
+
 
     @FXML
     public void createNewGroup() {
@@ -49,6 +59,9 @@ public class Home extends DatabaseConnection{
     @FXML
     Text postDescription;
 
+    @FXML
+    Button buttonJoinGroup;
+
     private void setPostTitle(String title) {
         postTitle.setText(title);
     }
@@ -57,39 +70,56 @@ public class Home extends DatabaseConnection{
         postDescription.setText(description);
     }
 
+    private void setButtonUserData(String userData) { buttonJoinGroup.setUserData(userData); }
+
     public void loadExistingGroups() {
-        String chatGroupID, chatGroupName, creatorRole, courseCategory, chatTitle, chatDescription;
         try {
-            sqlCommand = "SELECT * FROM ChatGroups WHERE UserID != ?";
+            // Prepare the SQL query
+            sqlCommand = "SELECT ChatGroupID, ChatGroupName, CreatorRole, CourseCategory, ChatTitle, ChatDescription " +
+                    "FROM ChatGroups " +
+                    "WHERE UserID != ? AND NOT EXISTS (" +
+                    "    SELECT 1 " +
+                    "    FROM GroupMemberships " +
+                    "    WHERE GroupMemberships.ChatGroupID = ChatGroups.ChatGroupID " +
+                    "      AND GroupMemberships.UserID = ?" +
+                    ");";
+
             statement = con.prepareStatement(sqlCommand);
-            statement.setInt(1, UserID);
+            statement.setInt(1, UserID); // Exclude groups created by the user
+            statement.setInt(2, UserID); // Exclude groups where the user is already a member
 
             resultSet = statement.executeQuery();
 
-            while(resultSet.next()) {
+            // Clear previous groups before adding new ones
+            postBox.getChildren().clear();
 
-                chatGroupID = resultSet.getString(1);
-                chatGroupName = resultSet.getString(2);
-                creatorRole = resultSet.getString(3);
-                courseCategory = resultSet.getString(4);
-                chatTitle = resultSet.getString(5);
-                chatDescription = resultSet.getString(6);
+            // Dynamically load each group component
+            while (resultSet.next()) {
+                String chatGroupID = resultSet.getString("ChatGroupID");
+                String chatGroupName = resultSet.getString("ChatGroupName");
+                String creatorRole = resultSet.getString("CreatorRole");
+                String courseCategory = resultSet.getString("CourseCategory");
+                String chatTitle = resultSet.getString("ChatTitle");
+                String chatDescription = resultSet.getString("ChatDescription");
 
+
+                // Load the FXML component for a group
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("group-stackable-component.fxml"));
                 StackPane rectangleComponent = loader.load();
 
+                // Set group details in the component controller
                 Home componentController = loader.getController();
                 componentController.setPostTitle(chatTitle);
                 componentController.setPostDescription(chatDescription);
+                componentController.setButtonUserData(chatGroupID); // Assign group ID to the button
 
+                // Add the component to the VBox
                 postBox.getChildren().add(rectangleComponent);
             }
-        }
-        catch (SQLException e) {
-           e.printStackTrace();
-        }
-        catch (IOException e) {
-            System.out.println("FXML Not loaded");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("FXML Not Loaded: " + e.getMessage());
         }
     }
 

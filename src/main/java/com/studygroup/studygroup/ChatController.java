@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ChatController extends DatabaseConnection{
@@ -41,14 +42,21 @@ public class ChatController extends DatabaseConnection{
             {"239.0.0.1", "1900"}
     };
 
-    public void initialize() {
+    public ResultSet getUserGroupChats(int UserID) throws SQLException {
+        sqlCommand = "SELECT * FROM ChatGroupDetails JOIN GroupMemberships ON GroupMemberships.ChatGroupID = ChatGroupDetails.ChatGroupID WHERE GroupMemberships.UserID = ?;";
+        statement = con.prepareStatement(sqlCommand);
+        statement.setInt(1, UserID);
+
+        return statement.executeQuery();
+    }
+
+    public void initialize() throws SQLException {
         // Initialize the default group
         initChat("239.0.0.0", 1234);
-
-        // Add buttons for group switching
-        for (String[] groupDetail : groupDetails) {
-            String groupAddress = groupDetail[0];
-            int groupPort = Integer.parseInt(groupDetail[1]);
+        ResultSet resultGroupChats = getUserGroupChats(Home.UserID);
+        while(resultGroupChats.next()) {
+            String groupAddress = resultGroupChats.getString("IP"); // Replace with actual column name
+            int groupPort = resultGroupChats.getInt("PortNumber"); // Replace with actual column name
             Button button = new Button("Connect to " + groupAddress + ":" + groupPort);
             button.setOnAction(e -> switchGroup(groupAddress, groupPort));
             sidePanel.getChildren().add(button);
@@ -61,10 +69,15 @@ public class ChatController extends DatabaseConnection{
 
     private void initChat(String host, int port) {
         try {
+            // Stop the previous thread and close the socket if necessary
+            running = false;
             if (socket != null) {
-                socket.leaveGroup(group); // Leave the previous group if switching
+                socket.leaveGroup(group);
                 socket.close();
             }
+
+            // Reset running for the new thread
+            running = true;
 
             group = InetAddress.getByName(host);
             this.port = port;
@@ -76,8 +89,7 @@ public class ChatController extends DatabaseConnection{
             socket.setTimeToLive(1); // Local network
             socket.joinGroup(group);
 
-            // Start the message-reading thread
-            running = true;
+            // Start the new message-reading thread
             new Thread(new ReadThread(socket, group, this.port)).start();
 
             // Notify the user
@@ -147,6 +159,7 @@ public class ChatController extends DatabaseConnection{
             }
         }
     }
+
 
     public void stop() {
         running = false; // Stop the thread
