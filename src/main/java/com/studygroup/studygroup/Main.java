@@ -13,13 +13,22 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
+
+/*
+* BINAS, There is still flaw on the logic of switching ports, IP,
+* supposedly next in line is to load all scenes upon sucessful login
+* to avoid loading them repetitely, and instead would just switch in between scenes
+* however in theory this would leave the listening thread still active in the background
+* */
+
+
 public class Main extends Application{
     static volatile boolean finished = false;
 
     private static ChatController chatController;
 
     public static Stage stage;
-
+    private static Scene homeScene, chatScene;
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
@@ -39,6 +48,16 @@ public class Main extends Application{
         launch();
     }
 
+    public static void successfulLogin() throws IOException {
+        FXMLLoader loader;
+        Parent root;
+
+        // Immediately load all scenes
+        loader = FXMLLoader.load(Main.class.getResource("home.fxml"));
+        root = loader.load();
+        homeScene = new Scene(root);
+    }
+
     public static void switchHomePage() throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("home.fxml"));
         Parent root = loader.load();
@@ -54,7 +73,7 @@ public class Main extends Application{
     }
 
     public static void switchChatPage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("chat-UI.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("messaging2.fxml"));
         Parent root = loader.load();
         Scene homeScene = new Scene(root);
 
@@ -66,6 +85,7 @@ public class Main extends Application{
 
     }
 
+    // Use this to kill the bg threads
     @Override
     public void stop() {
 
