@@ -1,0 +1,21 @@
+.root {
+    -fx-background-color: white;
+}
+
+#buttonJoinGroup {
+    -fx-background-color: maroon;
+    -fx-font-weight: bold;
+    -fx-font-size: 10px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 5px 10px;
+    -fx-cursor: hand;
+}
+
+#buttonJoinGroup:hover {
+    -fx-background-color: #80000;
+}
+
+#buttonJoinGroup:pressed {
+    -fx-background-color: brown;
+}

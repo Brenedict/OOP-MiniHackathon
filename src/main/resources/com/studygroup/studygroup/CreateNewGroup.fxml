@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      alignment="CENTER" spacing="15" style="-fx-padding: 20;" fx:id="createNewGroupRoot" fx:controller="com.studygroup.studygroup.CreateNewGroupController">
+<VBox fx:id="createNewGroupRoot" alignment="CENTER" spacing="15" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studygroup.studygroup.CreateNewGroupController">
 
     <!-- Title Bar -->
     <HBox alignment="TOP_RIGHT" spacing="5">
-        <Button text="X" onAction="#closeWindow" style="-fx-background-color: red; -fx-text-fill: white;" />
+        <Button onAction="#closeWindow" style="-fx-background-color: red; -fx-text-fill: white;" text="X" />
     </HBox>
 
     <!-- Title -->
-    <Label text="Create New Group" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Create New Group" />
 
     <!-- Input Fields -->
     <VBox alignment="CENTER_LEFT" spacing="10" style="-fx-pref-width: 300;">
@@ -27,9 +29,9 @@
         <TextField fx:id="chatTitleField" promptText="Enter chat title" />
 
         <Label text="Description:" />
-        <TextArea fx:id="chatDescriptionField" promptText="Enter group description" wrapText="true" style="-fx-pref-height: 100;" />
+        <TextArea fx:id="chatDescriptionField" promptText="Enter group description" style="-fx-pref-height: 100;" wrapText="true" />
     </VBox>
 
     <!-- Create Button -->
-    <Button text="Create Group" onAction="#createGroup" style="-fx-background-color: green; -fx-text-fill: white;" />
+    <Button onAction="#createGroup" style="-fx-background-color: #800000; -fx-text-fill: white;" text="Create Group" />
 </VBox>

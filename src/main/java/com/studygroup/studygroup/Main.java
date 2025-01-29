@@ -25,12 +25,15 @@ public class Main extends Application {
     static volatile boolean finished = false;
 
     public static Stage stage;
-    private static Scene homeScene, chatScene;
+    private static Scene profileScene, chatScene;
 
     // FIRST THING TO CHECK ON ERROR IS JDBC
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        databaseConnection.runTableCheck();
+
         showLoginPage();
     }
 
@@ -44,9 +47,9 @@ public class Main extends Application {
 
         try {
             Parent root = loader.load();
-            System.out.println("TEST"); // This should print if load is successful
+
             Scene signinScene = new Scene(root);
-            System.out.println("Successfully loaded sign-in.fxml!");
+
             signinScene.getStylesheets().add(Main.class.getResource("signin.css").toExternalForm());
             Font.loadFont(Main.class.getResourceAsStream("/fonts/OpenSauce-Black.ttf"), 12);
             stage.setScene(signinScene);
@@ -95,11 +98,20 @@ public class Main extends Application {
     }
 
     public static void switchChatPage() throws IOException {
-        FXMLLoader chatLoader = new FXMLLoader(Main.class.getResource("messagingPage.fxml"));
+        FXMLLoader chatLoader = new FXMLLoader(Main.class.getResource("messaging-page.fxml"));
         Parent chatRoot = chatLoader.load();
         chatScene = new Scene(chatRoot);
 
         stage.setScene(chatScene);
+        stage.show();
+    }
+
+    public static void switchProfilePage() throws IOException {
+        FXMLLoader chatLoader = new FXMLLoader(Main.class.getResource("profile.fxml"));
+        Parent chatRoot = chatLoader.load();
+        profileScene = new Scene(chatRoot);
+
+        stage.setScene(profileScene);
         stage.show();
     }
 

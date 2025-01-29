@@ -1,0 +1,46 @@
+-- CREATE Credentials TABLE
+CREATE TABLE credentials (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,  -- Automatically generates a unique UserID
+    FirstName VARCHAR(50) NOT NULL,          -- First name of the user
+    LastName VARCHAR(50) NOT NULL,           -- Last name of the user
+    Username VARCHAR(50) NOT NULL UNIQUE,    -- Username, should be unique
+    EmailAddress VARCHAR(100) NOT NULL UNIQUE, -- Email, should be unique
+    Password VARCHAR(255) NOT NULL,          -- Password, stored as a hashed value
+    Gender VARCHAR(10),                      -- Gender of the user (optional)
+    Role VARCHAR(20)                         -- Role of the user (e.g., admin, user, etc.)
+);
+
+-- CREATE ChatGroups Table
+CREATE TABLE ChatGroups(
+    ChatGroupID VARCHAR(5) PRIMARY KEY,         -- Primary key for the group
+    ChatGroupName VARCHAR(50),
+    CreatorRole VARCHAR(5),
+    CourseCategory VARCHAR(255),
+    ChatTitle VARCHAR(50),
+    ChatDescription VARCHAR(350),
+    UserID INT,                                -- UserID of the creator
+    IP VARCHAR(15),
+    PortNumber INT,
+    FOREIGN KEY (UserID) REFERENCES credentials(UserID)  -- Foreign key referencing credentials
+);
+
+-- CREATE GroupMemberships Table
+CREATE TABLE GroupMemberships (
+    UserID INT,
+    ChatGroupID VARCHAR(5),
+    FOREIGN KEY (UserID) REFERENCES credentials(UserID),  -- Foreign key referencing credentials
+    FOREIGN KEY (ChatGroupID) REFERENCES ChatGroups(ChatGroupID)  -- Foreign key referencing ChatGroups
+);
+
+-- CREATE Messages Table
+CREATE TABLE Messages (
+    MessageID INT AUTO_INCREMENT PRIMARY KEY,  -- Unique identifier for each message
+    ChatGroupID VARCHAR(5) NOT NULL,           -- The chat group where the message was sent
+    UserID INT NOT NULL,                       -- The sender's UserID
+    MessageText TEXT NOT NULL,                 -- The actual message content
+    Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, -- Auto-generated timestamp
+    FOREIGN KEY (ChatGroupID) REFERENCES ChatGroups(ChatGroupID) ON DELETE CASCADE,
+    FOREIGN KEY (UserID) REFERENCES credentials(UserID) ON DELETE CASCADE
+);
+
+

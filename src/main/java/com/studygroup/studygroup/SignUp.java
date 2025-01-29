@@ -127,7 +127,6 @@ public class SignUp extends DatabaseConnection {
         }
     }
 
-
     @FXML
     public void cancelSignUp() throws Exception {
         Main.showLoginPage();
