@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studygroup.studygroup.Profile">
+   <children>
+      <ImageView fitHeight="144.0" fitWidth="380.0" layoutX="14.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/logoWithTitle.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="237.0" fitWidth="235.0" layoutX="285.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/boy.png" />
+         </image>
+      </ImageView>
+      <Text fill="MAROON" layoutX="570.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Edit Profile" textAlignment="CENTER">
+         <font>
+            <Font name="Open Sauce One Regular" size="36.0" />
+         </font>
+      </Text>
+      <Text layoutX="542.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="label" text="First Name">
+          <font>
+              <Font name="Open Sauce One Bold" size="18.0" />
+          </font>
+      </Text>
+      <TextField layoutX="542.0" layoutY="184.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="220.0" promptText="&lt;Current&gt;">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </TextField>
+      <Text layoutX="772.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="label" text="Last Name">
+         <font>
+            <Font name="Open Sauce One Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField layoutX="772.0" layoutY="184.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="220.0" promptText="&lt;Current&gt;">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </TextField>
+      <Text layoutX="542.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="label" text="Username">
+         <font>
+            <Font name="Open Sauce One Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField layoutX="542.0" layoutY="253.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="450.0" promptText="&lt;Current&gt;">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </TextField>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="295.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="220.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Edit profile picture">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </Button>
+      <Text layoutX="297.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="label" text="Gender">
+         <font>
+            <Font name="Open Sauce One Bold" size="18.0" />
+         </font>
+      </Text>
+      <Button layoutX="296.0" layoutY="464.0" mnemonicParsing="false" text="Male">
+         <font>
+            <Font name="Open Sauce One Regular" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="342.0" layoutY="464.0" mnemonicParsing="false" text="Female">
+         <font>
+            <Font name="Open Sauce One Regular" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="403.0" layoutY="464.0" mnemonicParsing="false" text="Prefer not to say">
+         <font>
+            <Font name="Open Sauce One Regular" size="12.0" />
+         </font>
+      </Button>
+      <Text layoutX="542.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="label" text="Email Address">
+         <font>
+            <Font name="Open Sauce One Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField layoutX="542.0" layoutY="323.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="450.0" promptText="&lt;Current&gt;">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </TextField>
+      <Text layoutX="542.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="label" text="Phone Number">
+         <font>
+            <Font name="Open Sauce One Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField layoutX="542.0" layoutY="393.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="450.0" promptText="&lt;Current&gt;">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </TextField>
+      <Text layoutX="542.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="label" text="Current Password">
+         <font>
+            <Font name="Open Sauce One Bold" size="18.0" />
+         </font>
+      </Text>
+      <PasswordField layoutX="542.0" layoutY="463.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="450.0" />
+      <Text layoutX="542.0" layoutY="526.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="label" text="New Password">
+         <font>
+            <Font name="Open Sauce One Bold" size="18.0" />
+         </font>
+      </Text>
+      <PasswordField layoutX="542.0" layoutY="533.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="450.0" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="704.0" layoutY="602.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-font-weight: bold; -fx-background-color: #800000; -fx-font-size: 18px;" text="Save changes" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="851.0" layoutY="602.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-font-weight: bold; -fx-font-size: 18px;" text="Cancel" textAlignment="CENTER">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="541.0" layoutY="602.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="155.0" style="-fx-font-weight: bold; -fx-background-color: #ffdf00; -fx-font-size: 18px;" text="Delete account" textAlignment="CENTER" textFill="MAROON">
+         <font>
+            <Font name="Open Sauce One Regular" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
