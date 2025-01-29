@@ -22,8 +22,8 @@ public class Home extends DatabaseConnection{
 
     public Home() throws SQLException {
         super();
-
     }
+
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -141,5 +141,10 @@ public class Home extends DatabaseConnection{
             System.out.println("FXML Not Loaded: " + e.getMessage());
         }
     }
+
+//    @FXML
+//    private void editProfile() throws IOException {
+//        Main.switchProfilePage();
+//    }
 
 }

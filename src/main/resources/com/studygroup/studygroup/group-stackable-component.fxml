@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<StackPane fx:id="stackableComponent" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studygroup.studygroup.Home">
-   <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <Text fx:id="postTitle" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" />
-            <Text fx:id="postDescription" layoutX="14.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
-            <Button fx:id="buttonJoinGroup" layoutX="18.0" layoutY="61.0" mnemonicParsing="false" onAction="#joinGroup" text="Join" />
-         </children>
-      </AnchorPane>
-   </children>
+<StackPane fx:id="stackableComponent" maxHeight="-Infinity" maxWidth="562.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="346.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studygroup.studygroup.Home">
+    <children>
+        <AnchorPane prefWidth="378.0" style="-fx-border-color: black;">
+            <children>
+                <Text fx:id="postTitle" layoutX="14.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LF Studdy Buddy Near PUP">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Text>
+                <Button fx:id="buttonJoinGroup" layoutX="14.0" layoutY="68.0" mnemonicParsing="false" onAction="#joinGroup" prefHeight="20.0" prefWidth="67.0" style="-fx-background-color: maroon;" text="JOIN CHAT" textFill="WHITESMOKE">
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font></Button>
+            <ImageView fitHeight="12.0" fitWidth="12.0" layoutX="200.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/checkIcon.png" />
+               </image>
+            </ImageView>
+            <Line endX="11.75" endY="20.5" layoutX="2.0" layoutY="39.0" startX="11.75" startY="10.5" stroke="#ffdf00" strokeWidth="0.5" />
+            <ImageView fitHeight="12.0" fitWidth="12.0" layoutX="92.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/informationIcon.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="postDescription" layoutX="15.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            </children>
+        </AnchorPane>
+    </children>
 </StackPane>

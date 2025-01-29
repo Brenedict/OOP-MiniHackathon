@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Pos;
 import javafx.scene.text.Text;
@@ -68,8 +69,9 @@ public class ChatController extends DatabaseConnection{
             // Load chat history for the first group
             loadChatHistory(currentChatGroupID);
 
-            // Add the first group's button
+            // Create the first group's button
             Button firstGroupButton = new Button(resultGroupChats.getString("ChatGroupName"));
+            styleButton(firstGroupButton);
             firstGroupButton.setOnAction(e -> switchGroup(firstGroupAddress, firstGroupPort));
             groupsBox.getChildren().add(firstGroupButton);
 
@@ -78,7 +80,9 @@ public class ChatController extends DatabaseConnection{
                 final String groupAddress = resultGroupChats.getString("IP");
                 final int groupPort = resultGroupChats.getInt("PortNumber");
 
+                // Create buttons for other groups
                 Button button = new Button(resultGroupChats.getString("ChatGroupName"));
+                styleButton(button);
                 button.setOnAction(e -> switchGroup(groupAddress, groupPort));
                 groupsBox.getChildren().add(button);
             }
@@ -86,10 +90,20 @@ public class ChatController extends DatabaseConnection{
             System.out.println("No groups found for the user. Skipping initChat.");
             // Optionally, add a placeholder message in the UI
         }
+    }
 
-        // Set actions for sending messages
-        sendButton.setOnAction(e -> sendMessage());
-        messageField.setOnAction(e -> sendMessage());
+    // Method to style the buttons
+    private void styleButton(Button button) {
+        button.setStyle("-fx-background-color: #ffdf00; "
+                + "-fx-text-fill: black; "
+                + "-fx-font-weight: bold; "   // Make text bold
+                + "-fx-font-size: 14px; "
+                + "-fx-padding: 10px 20px; "
+                + "-fx-border-radius: 5px; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-border-color: maroon; "  // Maroon border
+                + "-fx-alignment: CENTER_LEFT;"); // Align text to the left
+        button.setMaxWidth(Double.MAX_VALUE); // Make button width fill the VBox
     }
 
     private void initChat(String host, int port) {
@@ -199,59 +213,59 @@ public class ChatController extends DatabaseConnection{
 
     private void appendMessage(String sender, String message, boolean isUserMessage) {
         Platform.runLater(() -> {
-            try {
-                // Load the chat bubble FXML
-                FXMLLoader loader = new FXMLLoader(Main.class.getResource("chat-bubble.fxml"));
-                HBox chatBubble = loader.load();
+            // Outer container for each message (VBox)
+            VBox messageContainer = new VBox();
+            messageContainer.setSpacing(5);
 
-                // Find the Label element from the loaded FXML
-                Label messageLabel = (Label) chatBubble.lookup("#messageLabel");
+            // Add margin to each VBox to create space between the messages
+            messageContainer.setMargin(messageContainer, new javafx.geometry.Insets(5, 0, 5, 0));
 
-                // Set the message text on the label
-                messageLabel.setText(message);
+            // Add a light grey border to the VBox
+            messageContainer.setStyle("-fx-border-color: #dcdcdc; "
+                    + "-fx-border-width: 1px; "
+                    + "-fx-border-radius: 5px; "
+                    + "-fx-padding: 5px 10px;");
 
-                // Apply the correct style for user vs other messages
-                if (isUserMessage) {
-                    chatBubble.getStyleClass().add("chat-bubble-you");
-                    chatBubble.setAlignment(Pos.CENTER_RIGHT);
-                } else {
-                    chatBubble.getStyleClass().add("chat-bubble-other");
-                    chatBubble.setAlignment(Pos.CENTER_LEFT);
+            // Label for the sender name ("You" or actual username)
+            Label messageUser = new Label(isUserMessage ? "You" : sender);
+            messageUser.getStyleClass().add("message-user");
 
-                    // Add the sender's name on the left side
-                    Text senderText = new Text(sender);  // Create a Text object for the sender's name
-                    senderText.setStyle("-fx-font-weight: bold;");  // Optionally make the sender name bold
-                    HBox senderBox = new HBox(senderText);
-                    senderBox.setAlignment(Pos.CENTER_LEFT);
+            // Style for the messageUser label
+            messageUser.setStyle("-fx-font-weight: bold; "
+                    + "-fx-padding: 5px 10px; "
+                    + "-fx-margin: 2px 0; "
+                    + "-fx-text-fill: #2f4f4f;");
 
-                    // Add sender's name above the message bubble
-                    VBox messageWithSender = new VBox(senderBox, chatBubble);
-                    messageBox.getChildren().add(messageWithSender);
-                    return;  // Stop here since the layout with sender has been added
-                }
+            // Label for the actual message
+            Label messageText = new Label(message);
+            messageText.setWrapText(true); // Ensure text wraps properly
+            messageText.getStyleClass().add("message-text");
 
-                // Add the chat bubble to the message box (VBox or HBox)
-                messageBox.getChildren().add(chatBubble);
+            // Style for the messageUser label
+            messageUser.setStyle("-fx-font-weight: bold; "
+                    + "-fx-padding: 5px 10px; "
+                    + "-fx-margin: 0 0 2px 0; "
+                    + "-fx-text-fill: #2f4f4f;");
 
-            } catch (IOException e) {
-                e.printStackTrace();
+            // Apply different styles based on sender
+            if (isUserMessage) {
+                messageText.setStyle(messageText.getStyle() + "-fx-background-color: #ffdf00;");  // Yellow bubble for user message
+            } else {
+                messageText.setStyle(messageText.getStyle() + "-fx-background-color: #dcdcdc;");  // Light gray bubble for others
             }
+
+            // Add sender label and message to the VBox
+            messageContainer.getChildren().addAll(messageUser, messageText);
+
+            // Align messages properly
+            HBox chatBubble = new HBox(messageContainer);
+            chatBubble.setAlignment(Pos.CENTER_LEFT); // Both aligned left
+
+            // Add the chat bubble to the message box (VBox)
+            messageBox.getChildren().add(chatBubble);
         });
     }
 
-    private void saveFileToDatabase(File file, byte[] fileContent) {
-        try {
-            String sql = "INSERT INTO Files (ChatGroupID, UserID, Filename, FileData) VALUES (?, ?, ?, ?)";
-            statement = con.prepareStatement(sql);
-            statement.setString(1, currentChatGroupID); // Using current chat group ID
-            statement.setInt(2, Home.UserID);  // Using current user ID
-            statement.setString(3, file.getName());  // Filename
-            statement.setBytes(4, fileContent);  // File content as byte array
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     public void goToHome() throws IOException {

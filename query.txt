@@ -1,4 +1,5 @@
-// CREATE Credentials TABLE
+
+-- CREATE Credentials TABLE
 CREATE TABLE credentials (
     UserID INT AUTO_INCREMENT PRIMARY KEY,  -- Automatically generates a unique UserID
     FirstName VARCHAR(50) NOT NULL,          -- First name of the user
@@ -10,25 +11,29 @@ CREATE TABLE credentials (
     Role VARCHAR(20)                         -- Role of the user (e.g., admin, user, etc.)
 );
 
-// CREATE ChatGroups Table
+-- CREATE ChatGroups Table
 CREATE TABLE ChatGroups(
-	ChatGroupID VARCHAR(5),
+    ChatGroupID VARCHAR(5) PRIMARY KEY,         -- Primary key for the group
     ChatGroupName VARCHAR(50),
     CreatorRole VARCHAR(5),
     CourseCategory VARCHAR(255),
     ChatTitle VARCHAR(50),
     ChatDescription VARCHAR(350),
-    UserID INT CHECK (UserID >= 10000 AND UserID <= 999999999),
+    UserID INT,                                -- UserID of the creator
     IP VARCHAR(15),
-    PortNumber INT
+    PortNumber INT,
+    FOREIGN KEY (UserID) REFERENCES credentials(UserID)  -- Foreign key referencing credentials
 );
 
-// Create GroupMembershipsTable
+-- CREATE GroupMemberships Table
 CREATE TABLE GroupMemberships (
-	UserID INT CHECK (UserID >= 10000 AND UserID <= 999999999),
-    ChatGroupID VARCHAR(5)
+    UserID INT,
+    ChatGroupID VARCHAR(5),
+    FOREIGN KEY (UserID) REFERENCES credentials(UserID),  -- Foreign key referencing credentials
+    FOREIGN KEY (ChatGroupID) REFERENCES ChatGroups(ChatGroupID)  -- Foreign key referencing ChatGroups
 );
 
+-- CREATE Messages Table
 CREATE TABLE Messages (
     MessageID INT AUTO_INCREMENT PRIMARY KEY,  -- Unique identifier for each message
     ChatGroupID VARCHAR(5) NOT NULL,           -- The chat group where the message was sent
