@@ -114,3 +114,22 @@ Line {
 #messageBox Line:last-of-type {
     -fx-stroke-width: 750px;
 }
+
+.chat-username {
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.chat-bubble-you-container {
+    -fx-background-color: #0084ff;
+    -fx-padding: 8px;
+    -fx-background-radius: 10px;
+}
+
+.chat-bubble-other-container {
+    -fx-background-color: #e4e6eb;
+    -fx-padding: 8px;
+    -fx-background-radius: 10px;
+}
+

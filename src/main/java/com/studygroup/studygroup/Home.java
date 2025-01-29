@@ -1,5 +1,7 @@
 package com.studygroup.studygroup;
 
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -46,13 +48,13 @@ public class Home extends DatabaseConnection{
         try {
             // Load the FXML for the popup
             FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateNewGroup.fxml"));
-            VBox popupRoot = loader.load();
+            Parent root = loader.load();
+            CreateNewGroupController controller = loader.getController();
 
-            // Create a new stage for the popup
-            Stage popupStage = new Stage();
-            popupStage.setTitle("Create New Group");
-            popupStage.setScene(new javafx.scene.Scene(popupRoot));
-            popupStage.show();
+            Stage newStage = new Stage();
+            controller.setStage(newStage); // Set the stage reference
+            newStage.setScene(new Scene(root));
+            newStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

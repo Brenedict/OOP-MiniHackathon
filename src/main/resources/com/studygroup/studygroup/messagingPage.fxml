@@ -80,7 +80,7 @@
                               </ImageView>
                               <ScrollPane layoutX="27.0" layoutY="102.0" prefHeight="404.0" prefWidth="688.0">
                                  <content>
-                                    <VBox fx:id="messageBox" prefHeight="386.0" prefWidth="684.0" />
+                                    <VBox fx:id="messageBox" prefHeight="386.0" prefWidth="684.0" style="-fx-background-image: url('@../../../images/logoStuddyBuddy.png'); -fx-background-size: cover; -fx-background-position: center;" />
                                  </content>
                               </ScrollPane>
                            </children>
@@ -99,11 +99,6 @@
                   <Image url="@../../../images/profileIcon.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="home" fitHeight="75.0" fitWidth="49.0" layoutX="76.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/homeIcon.png" />
-               </image>
-            </ImageView>
             <ImageView fx:id="messaging" fitHeight="75.0" fitWidth="49.0" layoutX="76.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/messageIcon.png" />
@@ -120,6 +115,15 @@
                </image>
             </ImageView>
             <Rectangle fx:id="selection" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="69.0" layoutX="41.0" layoutY="316.0" opacity="0.33" stroke="#ffdf00" strokeType="INSIDE" strokeWidth="100.0" width="120.0" />
+            <Button fx:id="homeButton" layoutX="67.0" layoutY="240.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="57.0" prefWidth="43.0" style="-fx-background-color: maroon;" text="Button">
+               <graphic>
+                  <ImageView fx:id="home" fitHeight="75.0" fitWidth="49.0" onMouseClicked="#goToHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/homeIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </bottom>

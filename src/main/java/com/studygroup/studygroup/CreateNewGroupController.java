@@ -31,12 +31,17 @@ public class CreateNewGroupController extends DatabaseConnection {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+
+        // Add a close request handler to handle "X" button click
+        this.stage.setOnCloseRequest(event -> {
+            closeWindow(); // Call the closeWindow method when the user clicks the "X" button
+        });
     }
 
     @FXML
     private void closeWindow() {
         if (stage != null) {
-            stage.close();
+            stage.close(); // Close the window
         }
     }
 
@@ -94,7 +99,6 @@ public class CreateNewGroupController extends DatabaseConnection {
             e.printStackTrace();
         }
     }
-
 
     private String generateRandomMulticastIP() {
         Random random = new Random();

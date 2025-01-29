@@ -29,6 +29,17 @@ CREATE TABLE GroupMemberships (
     ChatGroupID VARCHAR(5)
 );
 
+CREATE TABLE Messages (
+    MessageID INT AUTO_INCREMENT PRIMARY KEY,  -- Unique identifier for each message
+    ChatGroupID VARCHAR(5) NOT NULL,           -- The chat group where the message was sent
+    UserID INT NOT NULL,                       -- The sender's UserID
+    MessageText TEXT NOT NULL,                 -- The actual message content
+    Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, -- Auto-generated timestamp
+    FOREIGN KEY (ChatGroupID) REFERENCES ChatGroups(ChatGroupID) ON DELETE CASCADE,
+    FOREIGN KEY (UserID) REFERENCES credentials(UserID) ON DELETE CASCADE
+);
+
+
 // SAMPLE DATA SET OF GROUP CHATS
 INSERT INTO ChatGroups (ChatGroupID, ChatGroupName, CreatorRole, CourseCategory, ChatTitle, ChatDescription, UserID, IP, PortNumber) VALUES
 ('A1B2C', 'Tech Talks', 'tutor', 'BS Computer Science', 'Introduction to Java', 'A group for learning the basics of Java programming, from variables to object-oriented concepts.', 12345, '224.0.0.1', 5001),
@@ -72,4 +83,31 @@ VALUES
 (12345,'C4D5E'),
 (12345,'F1G2H'),
 (12345,'C1D3E');
+
+
+
+IMportant stuff:
+
+frontEnd:
+- Edit Profile
+        Edit name
+        Edit first and last name
+        Delete account
+- Home Page
+        Image
+        ProperFunction
+        Create group
+
+- Message
+        Proper Chat Group Buttons
+        Leave Group
+        Delete Group
+        Proper Text
+        Send Files????/ X
+
+Backend
+- Check non-existent table and create them
+- Edit Profile
+- Delete account
+- Leave Group
 
