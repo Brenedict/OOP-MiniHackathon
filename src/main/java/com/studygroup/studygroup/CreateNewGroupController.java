@@ -57,7 +57,7 @@ public class CreateNewGroupController extends DatabaseConnection {
             String ipAddress;
             int portNumber;
             do {
-                ipAddress = generateRandomIP();
+                ipAddress = generateRandomMulticastIP();
                 portNumber = generateRandomPort();
             } while (isIPAndPortInUse(ipAddress, portNumber)); // Ensure IP and port are unique
 
@@ -96,14 +96,19 @@ public class CreateNewGroupController extends DatabaseConnection {
     }
 
 
-    private String generateRandomIP() {
+    private String generateRandomMulticastIP() {
         Random random = new Random();
-        return random.nextInt(256) + "." + random.nextInt(256) + "." + random.nextInt(256) + "." + random.nextInt(256);
+        int firstOctet = 224 + random.nextInt(16); // Ensures it's between 224 and 239
+        int secondOctet = random.nextInt(256);
+        int thirdOctet = random.nextInt(256);
+        int fourthOctet = random.nextInt(256);
+
+        return firstOctet + "." + secondOctet + "." + thirdOctet + "." + fourthOctet;
     }
 
     private int generateRandomPort() {
         Random random = new Random();
-        return 1024 + random.nextInt(64511); // Ports between 1024 and 65535
+        return 1024 + random.nextInt(49151 - 1024 + 1); // Generates a port between 1024 and 49151
     }
 
     private boolean isIPAndPortInUse(String ip, int port) throws SQLException {

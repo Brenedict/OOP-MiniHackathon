@@ -24,6 +24,11 @@ public class Login extends DatabaseConnection {
    PasswordField passwordField;
 
    @FXML
+   public void handleSignUpLinkClick() throws IOException {
+       Main.switchSignUpPage();
+   }
+
+   @FXML
    public void loginAccount() throws SQLException {
 
        String username = usernameField.getText();
@@ -37,7 +42,7 @@ public class Login extends DatabaseConnection {
 
         System.out.println("Login Pressed");
 
-        sqlCommand = "SELECT UserID, Email FROM Credentials WHERE Email = ? AND Password = ?";
+        sqlCommand = "SELECT UserID, Username FROM Credentials WHERE EmailAddress = ? AND Password = ?";
         statement = con.prepareStatement(sqlCommand);
         statement.setString(1, username);
         statement.setString(2, password);

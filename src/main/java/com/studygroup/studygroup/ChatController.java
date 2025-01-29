@@ -37,12 +37,6 @@ public class ChatController extends DatabaseConnection{
     private String name;
     private volatile boolean running = true; // Used to control the ReadThread loop
 
-    private String[][] groupDetails = {
-            {"239.0.0.0", "1234"},
-            {"240.19.2.1", "1523"},
-            {"239.0.2.90", "1000"},
-            {"239.0.0.1", "1900"}
-    };
 
     public ResultSet getUserGroupChats(int UserID) throws SQLException {
         sqlCommand = "SELECT * FROM ChatGroups JOIN GroupMemberships ON GroupMemberships.ChatGroupID = ChatGroups.ChatGroupID WHERE GroupMemberships.UserID = ?;";
@@ -53,15 +47,32 @@ public class ChatController extends DatabaseConnection{
     }
 
     public void initialize() throws SQLException {
-        // Initialize the default group
-        initChat("239.0.0.0", 1234);
+        // Retrieve the user's group chats
         ResultSet resultGroupChats = getUserGroupChats(Home.UserID);
-        while(resultGroupChats.next()) {
-            String groupAddress = resultGroupChats.getString("IP"); // Replace with actual column name
-            int groupPort = resultGroupChats.getInt("PortNumber"); // Replace with actual column name
-            Button button = new Button("Connect to " + groupAddress + ":" + groupPort);
-            button.setOnAction(e -> switchGroup(groupAddress, groupPort));
-            groupsBox.getChildren().add(button);
+
+        if (resultGroupChats.next()) { // Check if there are results
+            // Initialize the first chat group
+            final String firstGroupAddress = resultGroupChats.getString("IP");
+            final int firstGroupPort = resultGroupChats.getInt("PortNumber");
+            initChat(firstGroupAddress, firstGroupPort); // Initialize with first group's IP and port
+
+            // Add the first group's button
+            Button firstGroupButton = new Button(resultGroupChats.getString("ChatGroupName"));
+            firstGroupButton.setOnAction(e -> switchGroup(firstGroupAddress, firstGroupPort));
+            groupsBox.getChildren().add(firstGroupButton);
+
+            // Process remaining rows
+            while (resultGroupChats.next()) {
+                final String groupAddress = resultGroupChats.getString("IP");
+                final int groupPort = resultGroupChats.getInt("PortNumber");
+
+                Button button = new Button("ChatGroupName");
+                button.setOnAction(e -> switchGroup(groupAddress, groupPort));
+                groupsBox.getChildren().add(button);
+            }
+        } else {
+            System.out.println("No groups found for the user. Skipping initChat.");
+            // Optionally, add a placeholder message in the UI
         }
 
         // Set actions for sending messages

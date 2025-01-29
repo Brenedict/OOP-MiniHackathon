@@ -1,5 +1,14 @@
 // CREATE Credentials TABLE
-
+CREATE TABLE credentials (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,  -- Automatically generates a unique UserID
+    FirstName VARCHAR(50) NOT NULL,          -- First name of the user
+    LastName VARCHAR(50) NOT NULL,           -- Last name of the user
+    Username VARCHAR(50) NOT NULL UNIQUE,    -- Username, should be unique
+    EmailAddress VARCHAR(100) NOT NULL UNIQUE, -- Email, should be unique
+    Password VARCHAR(255) NOT NULL,          -- Password, stored as a hashed value
+    Gender VARCHAR(10),                      -- Gender of the user (optional)
+    Role VARCHAR(20)                         -- Role of the user (e.g., admin, user, etc.)
+);
 
 // CREATE ChatGroups Table
 CREATE TABLE ChatGroups(

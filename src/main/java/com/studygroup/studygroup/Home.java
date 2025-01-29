@@ -2,6 +2,7 @@ package com.studygroup.studygroup;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -63,6 +64,9 @@ public class Home extends DatabaseConnection{
     }
 
     @FXML
+    Label welcomeLabel;
+
+    @FXML
     VBox postBox;
 
     @FXML
@@ -85,6 +89,7 @@ public class Home extends DatabaseConnection{
     private void setButtonUserData(String userData) { buttonJoinGroup.setUserData(userData); }
 
     public void loadExistingGroups() {
+        welcomeLabel.setText("Hello, " + Home.Username);
         try {
             // Prepare the SQL query
             sqlCommand = "SELECT ChatGroupID, ChatGroupName, CreatorRole, CourseCategory, ChatTitle, ChatDescription " +

@@ -25,7 +25,7 @@
                   </ImageView>
                   <HBox alignment="TOP_RIGHT" prefHeight="138.0" prefWidth="597.0">
                      <children>
-                        <Label text="Hello, Ligaya" />
+                        <Label fx:id="welcomeLabel" text="Hello, Ligaya" />
                         <ImageView fitHeight="114.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
@@ -45,6 +45,7 @@
                      <children>
                         <Button layoutX="12.0" layoutY="38.0" mnemonicParsing="false" onAction="#createNewGroup" text="Create" />
                         <Button layoutX="21.0" layoutY="85.0" mnemonicParsing="false" onAction="#loadChatPage" text="Chat" />
+                        <Button layoutX="11.0" layoutY="130.0" mnemonicParsing="false" onAction="#loadExistingGroups" text="Refresh" />
                      </children>
                   </AnchorPane>
                </right>

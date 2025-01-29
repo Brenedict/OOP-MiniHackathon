@@ -1,0 +1,116 @@
+/* General Styles */
+* {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#messageBox {
+    -fx-background-color: #f4f4f4;
+    -fx-border-width: 1;
+    -fx-border-color: #ddd;
+}
+
+/* Styling for the TextFields */
+#searchField, #messageField {
+    -fx-background-color: #fff;
+    -fx-border-radius: 10;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+    -fx-padding: 10px;
+    -fx-font-size: 16px;
+}
+
+#searchField {
+    -fx-pref-width: 280px;
+    -fx-pref-height: 51px;
+}
+
+#messageField {
+    -fx-pref-width: 633px;
+    -fx-pref-height: 67px;
+}
+
+/* ScrollPane Styles */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Button Styles */
+Button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+Button:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+#sendButton, #attachFile {
+    -fx-pref-width: 53px;
+    -fx-pref-height: 52px;
+}
+
+#sendButton:active, #attachFile:active {
+    -fx-background-color: #d0d0d0;
+}
+
+/* ImageView Styles */
+ImageView {
+    -fx-fit-width: 64px;
+    -fx-fit-height: 64px;
+}
+
+#sendButton {
+    -fx-fit-width: 37px;
+    -fx-fit-height: 51px;
+}
+
+/* Layout specific Styles */
+#groupsBox {
+    -fx-background-color: transparent;
+}
+
+#selection {
+    -fx-fill: dodgerblue;
+    -fx-opacity: 0.33;
+    -fx-stroke: #ffdf00;
+    -fx-stroke-width: 100px;
+    -fx-arc-height: 5;
+    -fx-arc-width: 5;
+}
+
+#home, #messaging, #notification, #setting {
+    -fx-fit-width: 49px;
+    -fx-fit-height: 75px;
+}
+
+#profileIcon, #profile2Icon {
+    -fx-fit-width: 70px;
+    -fx-fit-height: 66px;
+}
+
+#menu {
+    -fx-fit-width: 65px;
+    -fx-fit-height: 62px;
+}
+
+/* Line Styles */
+Line {
+    -fx-stroke-width: 5;
+}
+
+#messageBox Line {
+    -fx-stroke: maroon;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
+}
+
+#messageBox Line:first-of-type {
+    -fx-stroke-width: 120px;
+}
+
+#messageBox Line:last-of-type {
+    -fx-stroke-width: 750px;
+}
